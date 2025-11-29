@@ -1,34 +1,44 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-    
-    <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Welcome to z7p.se</title>
-    
-    <link rel="icon" type="image/png" href="https://www.z7p.se/media/favicon.png">
-    
-    <link rel="stylesheet" href="structure/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to z7p.se</title>
+  <link rel="icon" type="image/png" href="https://www.z7p.se/media/favicon.png">
+  <link rel="stylesheet" href="structure/style.css">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #212227;
+    }
+
+    #header {
+      display: block;
+      background-color: #1a1920;
+      width: 100%;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      color: #f9d7d7;
+    }
+
+    .image {
+      position: absolute;
+      width: 150px;
+      height: auto;
+    }
+  </style>
 </head>
-
 <body>
+  <div id="header">
+    <h1>Welcome to z7p.se</h1>
+  </div>
 
-    <div id="header">
-        <h1>Welcome to z7p.se</h1>
-    </div>
+  <img src="duck.jpg" alt="Duck" class="image" id="dvd">
 
-    <div class="main-content">
-        <img src="duck.jpg" alt="Duck" class="image">
-        
-        <div class="container">
-                        
-        </div>
-    </div>
-        
+  <script src="structure/bounce.js"></script>
 </body>
-
 </html>
