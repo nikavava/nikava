@@ -144,3 +144,13 @@ background-color: #5b6565;
 {
 margin-top: 30px;
 }
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+}
