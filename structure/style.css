@@ -1,0 +1,146 @@
+body,
+
+html
+
+{
+display:flex;
+font-family: Arial, sans-serif;
+background-color: #212227;
+color: #f9d7d7; 
+margin: 0;
+padding: 0;
+height: 100%;
+width: 100%;
+flex-direction: column;
+}
+
+#header 
+
+{
+display: block;
+background-color: #1a1920;
+width: 100%;
+text-align: center;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 10;
+}
+
+.main-content 
+
+{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex-grow: 1;
+margin-top: 80px;
+opacity: 0;
+transform: scale(0.8);
+animation: zoomIn 0.8s ease-out forwards;
+}
+
+@keyframes 
+zoomIn 
+{
+from 
+  {
+opacity: 0;
+transform: scale(0.8);
+}
+to 
+{
+opacity: 1;
+transform: scale(1);
+}
+}
+
+.email
+
+{
+font-size: 20px;
+font-weight: bold;
+color: #ff4500;
+}
+
+a 
+
+{
+color: #ff4500;
+text-decoration: none;
+}
+
+a:hover 
+
+{
+text-decoration: underline;
+}
+
+footer
+
+{
+margin-top: 50px;
+font-size: 14px;
+opacity: 0.6;
+}
+
+.button
+
+{
+display: block;
+width: 200px;
+padding: 15px;
+margin: 10px auto;
+background-color: #3a3d43;
+color: #f9d7d7; 
+text-decoration: none;
+border-radius: 5px;
+font-size: 18px;
+text-align: center;
+transition: transform 0.3s ease-out;
+}
+
+.button:hover
+
+{
+background-color: #5b6565;
+transform: scale(1.1);
+box-shadow: 0 0 10px #000000;
+}
+
+.button:active 
+{
+transform: scale(0.9);
+box-shadow: 0 0 15px #000000;
+}
+
+
+.back-button
+
+{
+position: fixed;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+background-color: #3a3d43;
+color: #f9d7d7;
+padding: 15px 30px;
+text-decoration: none;
+font-size: 18px;
+border-radius: 5px;
+margin: 10px auto;
+transition: background-color 0.3s;
+}
+
+.back-button:hover 
+
+{
+background-color: #5b6565;
+}
+
+.container 
+
+{
+margin-top: 30px;
+}
