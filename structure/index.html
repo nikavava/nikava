@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="author" content="Nikava">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Nikava.se</title>
+    <link rel="icon" type="image/png" href="media/favicon.png">
+    <link rel="stylesheet" href="structure/style.css">
+</head>
+    <style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #212227;
+    position: relative;
+    color: #ff0000;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+body::before { display: none; }
+    </style>
+<body>
+<div id="bg-layer" aria-hidden="true"></div>
+
+<div id="header">
+    <h1>Welcome to nikava.se</h1>
+</div>
+
+
+    <div id="enter-section">
+        <button id="enter-btn">Enter Website</button>
+    </div>
+
+    <div class="main-content">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="avatar">
+                    <img src="media/avatar.png" alt="avatar">
+                </div>
+                <div class="profile-meta">
+                    <h2 class="profile-name">name test</h2>
+                    <p class="profile-sub">subtext</p>
+                </div>
+            </div>
+
+            <div class="pages-grid">
+                <a href="pages/setup.html" class="page-card">setup</a>
+                <a href="pages/about.html" class="page-card">About This Website</a>
+                <a href="pages/clips.html" class="page-card">game clips</a>
+            </div>
+
+            <div class="social-grid">
+                <a href="https://www.namemc.com/nikava" 
+                   class="social-btn" 
+                   style="background-image: url('media/namemc-icon.png');"
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                </a>
+
+                <a href="https://www.roblox.com/users/808126622/profile" 
+                   class="social-btn" 
+                   style="background-image: url('media/roblox-icon.png');"
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                </a>
+
+                <a href="https://www.youtube.com/@kpttks" 
+                   class="social-btn" 
+                   style="background-image: url('media/youtube-icon.png');"
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                </a>
+
+                <a href="https://www.discord.com" 
+                   class="social-btn" 
+                   style="background-image: url('media/discord-icon.png');"
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                </a>
+            </div>
+        </div>
+
+            <!-- Music Player -->
+    <div id="music-player" class="music-player">
+        <div class="player-info">
+            <span id="track-title" class="track-title">Track 1</span>
+            <div class="player-controls">
+                <button id="prev-btn" class="player-btn" title="Previous">⏮</button>
+                <button id="play-pause-btn" class="player-btn play-pause-btn" title="Play">▶</button>
+                <button id="next-btn" class="player-btn" title="Next">⏭</button>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Visualizer -->
+    <canvas id="visualizer"></canvas>
+    
+    <audio id="bg-music" src="media/music1.ogg"></audio>
+
+    <script>
+        // Enter button logic
+        document.getElementById("enter-btn").addEventListener("click", function() {
+            document.querySelector(".main-content").style.display = "flex"; // show content
+           document.getElementById("enter-section").style.display = "none"; // hide enter section
+
+          const music = document.getElementById("bg-music");
+          music.play().catch(err => console.log("Autoplay blocked:", err));
+
+          startVisualizer(music);
+        });
+
+
+        // Music player logic
+        const music = document.getElementById("bg-music");
+        const playPauseBtn = document.getElementById("play-pause-btn");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const trackTitle = document.getElementById("track-title");
+        const progressBar = document.getElementById("progress-fill");
+
+        // Track list
+        const tracks = [
+            { src: "media/music1.ogg", title: "Track 1" },
+            { src: "media/music2.ogg", title: "Track 2" },
+            { src: "media/music3.ogg", title: "Track 3" },
+            { src: "media/music4.ogg", title: "Track 4" },
+            { src: "media/music5.ogg", title: "Track 5" }
+        ];
+        let currentTrackIndex = 0;
+
+        // Play/pause button logic
+        playPauseBtn.addEventListener("click", () => {
+            if (music.paused) {
+                music.play().catch(err => console.log("Autoplay blocked:", err));
+                playPauseBtn.textContent = "⏸";
+            } else {
+                music.pause();
+                playPauseBtn.textContent = "▶";
+            }
+        });
+
+        // Next track button
+        nextBtn.addEventListener("click", () => {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            loadTrack(currentTrackIndex);
+            music.play().catch(err => console.log("Autoplay blocked:", err));
+        });
+
+        // Previous track button
+        prevBtn.addEventListener("click", () => {
+            currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            loadTrack(currentTrackIndex);
+            music.play().catch(err => console.log("Autoplay blocked:", err));
+        });
+
+        // Load track function
+        function loadTrack(index) {
+            music.src = tracks[index].src;
+            trackTitle.textContent = tracks[index].title;
+            currentTrackIndex = index;
+        }
+
+        // Update progress bar
+        music.addEventListener("timeupdate", () => {
+            const percent = (music.currentTime / music.duration) * 100;
+            progressBar.style.width = percent + "%";
+        });
+
+        // Update play button when music ends
+        music.addEventListener("ended", () => {
+            playPauseBtn.textContent = "▶";
+        });
+
+        // Update play button when music plays
+        music.addEventListener("play", () => {
+            playPauseBtn.textContent = "⏸";
+        });
+
+        // Update play button when music is paused
+        music.addEventListener("pause", () => {
+            playPauseBtn.textContent = "▶";
+        });
+
+        // Background parallax effect with mouse tracking
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener("mousemove", (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 60;  // increased from 20 to 60 for more movement
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 60;
+        });
+
+        // Cursor trail
+        document.addEventListener("mousemove", (e) => {
+            const trail = document.createElement("div");
+            trail.className = "trail";
+            trail.style.left = e.pageX + "px";
+            trail.style.top = e.pageY + "px";
+            document.body.appendChild(trail);
+            setTimeout(() => trail.remove(), 600);
+        });
+
+        // Click ripple
+        document.addEventListener("click", (e) => {
+            const circle = document.createElement("div");
+            circle.className = "click-circle";
+            circle.style.left = (e.pageX - 25) + "px";
+            circle.style.top = (e.pageY - 25) + "px";
+            circle.style.width = "50px";
+            circle.style.height = "50px";
+            document.body.appendChild(circle);
+            setTimeout(() => circle.remove(), 600);
+        });
+
+        // Visualizer
+        function startVisualizer(audioElement) {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const source = audioCtx.createMediaElementSource(audioElement);
+            const analyser = audioCtx.createAnalyser();
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+
+            analyser.fftSize = 256;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            const canvas = document.getElementById("visualizer");
+            const ctx = canvas.getContext("2d");
+
+            // store previous heights for smoothing
+            let prevHeights = new Array(bufferLength).fill(0);
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight * 0.25;
+            }
+            resizeCanvas();
+            window.addEventListener("resize", resizeCanvas);
+
+            function draw() {
+                requestAnimationFrame(draw);
+                analyser.getByteFrequencyData(dataArray);
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const barWidth = (canvas.width / bufferLength) * 2; // spacing
+                let x = 0;
+
+                // Calculate average frequency for background parallax
+                let averageFrequency = 0;
+                for (let i = 0; i < bufferLength; i++) {
+                    averageFrequency += dataArray[i];
+                }
+                averageFrequency /= bufferLength;
+
+                // Animate dedicated background layer for music-reactive parallax
+                const bg = document.getElementById('bg-layer');
+                if (bg) {
+                    const scale = 1 + (averageFrequency / 255) * 0.15; // 1 -> 1.15
+                    const xJitter = (averageFrequency / 255) * 6 + mouseX; // add mouse offset
+                    const yJitter = (averageFrequency / 255) * 4 + mouseY;
+                    bg.style.transform = `scale(${scale}) translate(${xJitter}px, ${yJitter}px)`;
+                    // subtle background-position shift for extra depth combined with mouse
+                    const posX = 50 + (averageFrequency / 255) * 3 + (mouseX / 20) * 3; // combine effects
+                    const posY = 50 + (averageFrequency / 255) * 2 + (mouseY / 20) * 2;
+                    bg.style.backgroundPosition = `${posX}% ${posY}%`;
+                }
+
+                for (let i = 0; i < bufferLength; i++) {
+                    // reduce peak multiplier to avoid hitting the top
+                    const rawHeight = dataArray[i] * 1.4;
+                    // smooth and cap at 85% of canvas height for nicer visuals
+                    const barHeight = Math.min(rawHeight * 0.7 + prevHeights[i] * 0.3, canvas.height * 0.85);
+                    prevHeights[i] = barHeight;
+
+                // solid white bars
+                ctx.fillStyle = "#ffffff";
+                ctx.shadowColor = "#ffffff";   // optional glow
+                ctx.shadowBlur = 5;           // adjust glow strength
+
+
+                    // Draw bar, then leave a space
+                    ctx.fillRect(x, canvas.height - barHeight, barWidth / 2, barHeight);
+                    x += barWidth;
+                }
+            }
+            draw();
+        }
+    </script>
+
+</body>
+</html>
+

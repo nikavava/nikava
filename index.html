@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="author" content="Nikava">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>www.Nikava.se</title>
+    <link rel="stylesheet" href="structure/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div id="bg-layer" aria-hidden="true"></div>
+
+<div id="header">
+    <div class="header-center">
+        <div id="music-player" class="music-player">
+            <div class="player-info">
+                <span id="track-title" class="track-title"></span>
+                <div class="player-controls">
+                    <button id="prev-btn" class="player-btn" title="Previous">⏮</button>
+                    <button id="play-pause-btn" class="player-btn play-pause-btn" title="Play">▶</button>
+                    <button id="next-btn" class="player-btn" title="Next">⏭</button>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="language-switcher">
+        <button id="lang-btn">
+            <img id="lang-flag" src="media/flag-en.png" alt="English" height="32">
+        </button>
+    </div>
+</div>
+
+<div id="enter-section">
+    <button id="enter-btn"
+        data-en="Click!"
+        data-sv="Click!"
+        data-pl="Click!"
+        data-pt="Click!">
+        Click!
+    </button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="avatar">
+                <img src="media/avatar.png" alt="avatar">
+            </div>
+            <div class="profile-meta">
+                <h2 class="profile-name"
+                    data-en="Nikava"
+                    data-sv="Nikava"
+                    data-pl="Nikava"
+                    data-pt="Nikava">Nikava</h2>
+                <p class="profile-sub"
+                   data-en="I love playing on my Computer"
+                   data-sv="Jag älskar att spela på min dator"
+                   data-pl="Uwielbiam grać na komputerze"
+                   data-pt="Eu amo CTF">I love playing on my Computer</p>
+            </div>
+        </div>
+
+        <div class="pages-grid">
+            <a href="pages/gallery.html" id="gallery-btn" class="button"
+               data-en="Photo Gallery"
+               data-sv="Fotogalleri"
+               data-pl="Galeria zdjęć"
+               data-pt="Galeria de Fotos">Photo Gallery ➡️</a>
+               
+            <a href="pages/setup.html" id="setup-btn" class="button"
+               data-en="Setup"
+               data-sv="setup"
+               data-pl="setup"
+               data-pt="Setup">Setup ➡️</a>
+
+            <a href="pages/clips.html" id="clips-btn" class="button"
+               data-en="Clips and Highlights"
+               data-sv="Klipp och höjdpunkter"
+               data-pl="Klipy i najważniejsze momenty"
+               data-pt="Clipes e Destaques">Clips and Highlights ➡️</a>
+
+            <a href="pages/blog.html" id="blog-btn" class="button"
+               data-en="Blog"
+               data-sv="Blogg"
+               data-pl="Blog"
+               data-pt="Blog">Blog ➡️</a>
+
+            <a href="#" id="about-btn" class="button"
+               data-en="About This Website"
+               data-sv="Om denna webbplats"
+               data-pl="O tej stronie"
+               data-pt="Sobre este site">About This Website</a>
+
+            <a href="#" id="contact-btn" class="button"
+               data-en="Contact"
+               data-sv="Kontakt"
+               data-pl="Kontakt"
+               data-pt="Contato">Contact</a>
+        </div>
+
+        <div class="social-grid">
+            <!-- unchanged social links -->
+        </div>
+    </div>
+</div>
+
+<!-- ONLY KEEP ABOUT + CONTACT AS SPA SECTIONS -->
+<div id="about-section">
+  <div class="section-card">
+    <h2 data-en="About This Website" data-sv="Om denna webbplats" data-pl="O tej stronie" data-pt="Sobre este site">About This Website</h2>
+    <p data-en="This is my personal website where I post fun things I do here. Welcome!"
+       data-sv="Detta är min personliga webbplats där jag lägger upp roliga saker jag gör. Välkommen!"
+       data-pl="To jest moja osobista strona, gdzie publikuję zabawne rzeczy, które robię. Witaj!"
+       data-pt="Este é o meu site pessoal onde posto coisas divertidas que faço aqui. Bem-vindo!">
+       This is my personal website where I post fun things I do here. Welcome!
+    </p>
+    <div class="section-content">
+      <p data-en="Enjoy exploring my projects and posts."
+         data-sv="Njut av att utforska mina projekt och inlägg."
+         data-pl="Ciesz się odkrywaniem moich projektów i postów."
+         data-pt="Aproveite para explorar meus projetos e publicações.">
+         Enjoy exploring my projects and posts.
+      </p>
+    </div>
+    <button class="button" data-en="Back" data-sv="Tillbaka" data-pl="Wstecz" data-pt="Voltar">Back</button>
+  </div>
+</div>
+
+<div id="contact-section">
+  <div class="section-card">
+    <h2 data-en="Contact" data-sv="Kontakt" data-pl="Kontakt" data-pt="Contato">Contact</h2>
+    <p data-en="I don’t have any social media other than Discord and Steam."
+       data-sv="Jag har inga sociala medier förutom Discord och Steam."
+       data-pl="Nie mam żadnych mediów społecznościowych poza Discordem i Steamem."
+       data-pt="Não tenho nenhuma rede social além do Discord e do Steam.">
+       I don’t have any social media other than Discord and Steam.
+    </p>
+        <div class="section-content">
+        <p>
+            Discord: nikavactf | 
+            <a href="https://steamcommunity.com/id/nikavaa/"
+            target="_blank" rel="noopener noreferrer"
+            data-en="Steam: https://steamcommunity.com/id/nikavaa/"
+            data-sv="Steam: https://steamcommunity.com/id/nikavaa/"
+            data-pl="Steam: https://steamcommunity.com/id/nikavaa/"
+            data-pt="Steam: https://steamcommunity.com/id/nikavaa/">
+            Steam: https://steamcommunity.com/id/nikavaa/
+            </a>
+        </p>
+        </div>
+    <button class="button" data-en="Back" data-sv="Tillbaka" data-pl="Wstecz" data-pt="Voltar">Back</button>
+  </div>
+</div>
+
+<canvas id="visualizer"></canvas>
+<audio id="bg-music" src="media/music1.ogg"></audio>
+
+<script src="structure/script.js"></script>
+</body>
+</html>
