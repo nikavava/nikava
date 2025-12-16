@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Nikava">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <link rel="stylesheet" href="../structure/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="bg-layer" aria-hidden="true"></div>
+
+<!-- Header -->
+<div id="header">
+  <h1>Blog</h1>
+  <div id="language-switcher">
+    <button id="lang-btn">
+        <img id="lang-flag" src="/media/flag-en.png" alt="English" height="32">
+    </button>
+  </div>
+</div>
+
+<!-- Centered Content -->
+<div class="page-wrapper">
+  <main class="section-card">
+    <h2 data-en="My Blog"
+        data-sv="Min Blogg"
+        data-pl="Mój Blog"
+        data-pt="Meu Blog">My Blog</h2>
+    <p data-en="Here are some of my latest posts."
+       data-sv="Här är några av mina senaste inlägg."
+       data-pl="Oto kilka moich najnowszych wpisów."
+       data-pt="Aqui estão algumas das minhas últimas postagens.">
+       Here are some of my latest posts.
+    </p>
+
+<div class="blog-list">
+  <figure>
+    <img src="../media/blog-photo-1.png" alt="Blog Post 1">
+    <figcaption>
+        <a href="/pages/blog/blog1.html"
+        data-en="nothing here yet - 2025/12/15"
+        data-sv="nothing here yet - 2025-12-15"
+        data-pl="nothing here yet - 2025-12-15"
+        data-pt="nothing here yet - 15/12/2025">
+        nothing here yet - 2025/12/15
+        </a>
+
+      </a>
+    </figcaption>
+  </figure>
+
+    <div class="button-container">
+      <a href="../index.html" class="button"
+         data-en="⬅ Back to Home"
+         data-sv="⬅ Tillbaka till startsidan"
+         data-pl="⬅ Powrót do strony głównej"
+         data-pt="⬅ Voltar para a Página Inicial">⬅ Back to Home</a>
+    </div>
+  </main>
+</div>
+
+<canvas id="visualizer"></canvas>
+<script src="../structure/script.js"></script>
+
+</body>
+</html>

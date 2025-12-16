@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Nikava">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clips</title>
+  <link rel="stylesheet" href="../structure/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div id="bg-layer" aria-hidden="true"></div>
+
+<!-- Header -->
+<div id="header">
+  <h1>Clips</h1>
+  <div id="language-switcher">
+    <button id="lang-btn">
+        <img id="lang-flag" src="/media/flag-en.png" alt="English" height="32">
+    </button>
+  </div>
+</div>
+
+<!-- Centered Content -->
+<div class="page-wrapper">
+  <main class="section-card">
+    <h2 data-en="My Clips"
+        data-sv="Mina Klipp"
+        data-pl="Moje klipy"
+        data-pt="Meus Clipes">My Clips</h2>
+    <p data-en="Here are some of my favorite video clips."
+       data-sv="Här är några av mina favoritklipp."
+       data-pl="Oto kilka moich ulubionych klipów."
+       data-pt="Aqui estão alguns dos meus clipes favoritos.">
+       Here are some of my favorite video clips.
+    </p>
+
+    <div class="gallery-grid">
+        <figure>
+        <iframe width="100%" height="200"
+                src="https://www.youtube.com/embed/a0z1O2fKkdI?si=YyZB27Q4E5iXpa62"
+                title="Clip 1" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+        <figcaption data-en="Clip 1"
+                    data-sv="Klipp 1"
+                    data-pl="Klip 1"
+                    data-pt="Clipe 1">Clip 1</figcaption>
+        </figure>
+
+        <figure>
+        <iframe width="100%" height="200"
+                src="https://www.youtube.com/embed/YWFdLSKIRog?si=LP04GCuODKGXVx2_"
+                title="Clip 2" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+        <figcaption data-en="Clip 2"
+                    data-sv="Klipp 2"
+                    data-pl="Klip 2"
+                    data-pt="Clipe 2">Clip 2</figcaption>
+        </figure>
+
+        <figure>
+        <iframe width="100%" height="200"
+                src="https://www.youtube.com/embed/SoieTsBOKZU?si=9GhwcN7wqc8mAMHA"
+                title="Clip 3" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+        <figcaption data-en="Clip 3"
+                    data-sv="Klipp 3"
+                    data-pl="Klip 3"
+                    data-pt="Clipe 3">Clip 3</figcaption>
+        </figure>
+
+    </div>
+
+    <div class="button-container">
+      <a href="../index.html" class="button"
+         data-en="⬅ Back to Home"
+         data-sv="⬅ Tillbaka till startsidan"
+         data-pl="⬅ Powrót do strony głównej"
+         data-pt="⬅ Voltar para a Página Inicial">⬅ Back to Home</a>
+    </div>
+  </main>
+</div>
+
+<canvas id="visualizer"></canvas>
+<script src="../structure/script.js"></script>
+
+</body>
+</html>

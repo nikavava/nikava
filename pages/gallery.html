@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Nikava">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery</title>
+  <link rel="stylesheet" href="../structure/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div id="bg-layer" aria-hidden="true"></div>
+
+<!-- Header -->
+<div id="header">
+  <h1>Gallery</h1>
+  <div id="language-switcher">
+    <button id="lang-btn">
+        <img id="lang-flag" src="/media/flag-en.png" alt="English" height="32">
+    </button>
+  </div>
+</div>
+
+<!-- Centered Content -->
+<div class="page-wrapper">
+  <main class="section-card">
+    <h2 data-en="Photo Gallery"
+        data-sv="Fotogalleri"
+        data-pl="Galeria zdjęć"
+        data-pt="Galeria de Fotos">Photo Gallery</h2>
+    <p data-en="Here are some of my favorite photos."
+       data-sv="Här är några av mina favoritbilder."
+       data-pl="Oto kilka moich ulubionych zdjęć."
+       data-pt="Aqui estão algumas das minhas fotos favoritas.">
+       Here are some of my favorite photos.
+    </p>
+
+    <div class="gallery-grid">
+      <figure>
+        <img src="../media/gallery-photo-1.png" alt="Dog in the park">
+        <figcaption data-en="Dog in the park"
+                    data-sv="Dog in the park"
+                    data-pl="Dog in the park"
+                    data-pt="Dog in the park">Dog in the park</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/gallery-photo-2.png" alt="Cat eyes close-up">
+        <figcaption data-en="Cat eyes close-up"
+                    data-sv="Cat eyes close-up"
+                    data-pl="Cat eyes close-up"
+                    data-pt="Cat eyes close-up">Cat eyes close-up</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/gallery-photo-3.png" alt="Quack Quack">
+        <figcaption data-en="Quack Quack"
+                    data-sv="Quack Quack"
+                    data-pl="Quack Quack"
+                    data-pt="Quack Quack">Quack Quack</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/gallery-photo-4.png" alt="peek">
+        <figcaption data-en="peek"
+                    data-sv="peek"
+                    data-pl="peek"
+                    data-pt="peek">peek</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/gallery-photo-5.png" alt="Campfire">
+        <figcaption data-en="Campfire"
+                    data-sv="Campfire"
+                    data-pl="Campfire"
+                    data-pt="Campfire">Campfire</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/gallery-photo-6.png" alt="Beach sunrise">
+        <figcaption data-en="Beach sunrise"
+                    data-sv="Beach sunrise"
+                    data-pl="Beach sunrise"
+                    data-pt="Beach sunrise">Beach sunrise</figcaption>
+      </figure>
+    </div>
+
+    <div class="button-container">
+      <a href="../index.html" class="button"
+         data-en="⬅ Back to Home"
+         data-sv="⬅ Tillbaka till startsidan"
+         data-pl="⬅ Powrót do strony głównej"
+         data-pt="⬅ Voltar para a Página Inicial">⬅ Back to Home</a>
+    </div>
+
+  </main>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img" alt="">
+</div>
+
+<canvas id="visualizer"></canvas>
+<script src="../structure/script.js"></script>
+
+<!-- Lightbox Script -->
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector(".lightbox .close");
+
+  let scale = 1;
+  let tx = 0, ty = 0;
+  let dragging = false;
+  let startX = 0, startY = 0;
+  let moved = false; // track if mouse moved
+
+  function applyTransform() {
+    lightboxImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  }
+
+  function resetView() {
+    scale = 1; tx = 0; ty = 0; applyTransform();
+  }
+
+  // Open lightbox
+  document.querySelectorAll(".gallery-grid img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      resetView();
+    });
+  });
+
+  // Close
+  closeBtn.addEventListener("click", () => lightbox.style.display = "none");
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.style.display = "none";
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") lightbox.style.display = "none";
+  });
+
+  // Click to zoom (only if not dragging)
+  lightboxImg.addEventListener("click", (e) => {
+    if (moved) { 
+      moved = false; // reset after drag
+      return; 
+    }
+    e.stopPropagation();
+    if (scale === 1) {
+      scale = 2; // zoom in
+    } else {
+      scale = 1; tx = 0; ty = 0; // zoom out and reset pan
+    }
+    applyTransform();
+  });
+
+  // Drag to pan
+  lightboxImg.addEventListener("mousedown", (e) => {
+    if (scale === 1) return;
+    dragging = true;
+    moved = false;
+    startX = e.clientX - tx;
+    startY = e.clientY - ty;
+    lightboxImg.style.cursor = "grabbing";
+    e.preventDefault();
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    moved = true;
+    tx = e.clientX - startX;
+    ty = e.clientY - startY;
+    applyTransform();
+  });
+
+  window.addEventListener("mouseup", () => {
+    dragging = false;
+    lightboxImg.style.cursor = "grab";
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Nikava">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup</title>
+  <link rel="stylesheet" href="../structure/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div id="bg-layer" aria-hidden="true"></div>
+
+<!-- Header -->
+<div id="header">
+  <h1>Setup</h1>
+  <div id="language-switcher">
+    <button id="lang-btn">
+        <img id="lang-flag" src="/media/flag-en.png" alt="English" height="32">
+    </button>
+  </div>
+</div>
+
+<!-- Centered Content -->
+<div class="page-wrapper">
+  <main class="section-card">
+    <h2 data-en="My Setup"
+        data-sv="Min Utrustning"
+        data-pl="Moje stanowisko"
+        data-pt="Meu Setup">My Setup</h2>
+    <p data-en="Here is a look at my workspace and gear."
+       data-sv="Här är en titt på min arbetsplats och utrustning."
+       data-pl="Oto spojrzenie na moje stanowisko i sprzęt."
+       data-pt="Aqui está uma visão do meu espaço de trabalho e equipamentos.">
+       Here is a look at my workspace and gear.
+    </p>
+
+    <div class="gallery-grid">
+      <figure>
+        <img src="../media/setup-photo-1.png" alt="gigabyte 27in 2k 180hz">
+        <figcaption data-en="gigabyte 27in 2k 180hz"
+                    data-sv="gigabyte 27in 2k 180hz"
+                    data-pl="gigabyte 27in 2k 180hz"
+                    data-pt="gigabyte 27in 2k 180hz ">gigabyte 27in 2k 180hz</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/setup-photo-2.png" alt="Lian Li a4-h2o, nVidia GTX 1060, ryzen 5 5500, corsair 32gb ram, samsung 980 1tb">
+        <figcaption data-en="Lian Li a4-h2o, nVidia GTX 1060, ryzen 5 5500, corsair 32gb ram, samsung 980 1tb"
+                    data-sv="Lian Li a4-h2o, nVidia GTX 1060, ryzen 5 5500, corsair 32gb ram, samsung 980 1tb"
+                    data-pl="Lian Li a4-h2o, nVidia GTX 1060, ryzen 5 5500, corsair 32gb ram, samsung 980 1tb"
+                    data-pt="Lian Li a4-h2o, nVidia GTX 1060, ryzen 5 5500, corsair 32gb ram, samsung 980 1tb">Lian Li a4-h2o, nVidia GTX 1060, ryzen 5 5500, corsair 32gb ram, samsung 980 1tb</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/setup-photo-3.png" alt="Truthear hexa, Logitecg mx518 legendary">
+        <figcaption data-en="Truthear hexa, Logitech mx518 legendary"
+                    data-sv="Truthear hexa, Logitech mx518 legendary"
+                    data-pl="Truthear hexa, Logitech mx518 legendary"
+                    data-pt="Truthear hexa, Logitech mx518 legendary">Truthear hexa, Logitecg mx518 legendary</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/setup-photo-4.png" alt="Logitech k270 keyboard">
+        <figcaption data-en="Logitech k270 keyboard"
+                    data-sv="Logitech k270 keyboard"
+                    data-pl="Logitech k270 keyboard"
+                    data-pt="Logitech k270 keyboard">Logitech k270 keyboard</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/setup-photo-5.png" alt="Onkyo TX-SR501, Jamo a10 5.1 speakers">
+        <figcaption data-en="Onkyo TX-SR501, Jamo a10 5.1 speakers"
+                    data-sv="Onkyo TX-SR501, Jamo a10 5.1 speakers"
+                    data-pl="Onkyo TX-SR501, Jamo a10 5.1 speakers"
+                    data-pt="Onkyo TX-SR501, Jamo a10 5.1 speakers">Onkyo TX-SR501, Jamo a10 5.1 speakers</figcaption>
+      </figure>
+      <figure>
+        <img src="../media/setup-photo-6.png" alt="Gmk67 custom keyboard, logitech G pro x superlight mouse">
+        <figcaption data-en="Gmk67 custom keyboard, logitech G pro x superlight mouse"
+                    data-sv="Gmk67 custom keyboard, logitech G pro x superlight mouse"
+                    data-pl="Gmk67 custom keyboard, logitech G pro x superlight mouse"
+                    data-pt="Gmk67 custom keyboard, logitech G pro x superlight mouse">Gmk67 custom keyboard, logitech G pro x superlight mouse</figcaption>
+      </figure>
+
+    </div>
+
+    <div class="button-container">
+      <a href="../index.html" class="button"
+         data-en="⬅ Back to Home"
+         data-sv="⬅ Tillbaka till startsidan"
+         data-pl="⬅ Powrót do strony głównej"
+         data-pt="⬅ Voltar para a Página Inicial">⬅ Back to Home</a>
+    </div>
+  </main>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img" alt="">
+</div>
+
+<canvas id="visualizer"></canvas>
+<script src="../structure/script.js"></script>
+
+<!-- Lightbox Script (same as gallery) -->
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector(".lightbox .close");
+
+  let scale = 1, tx = 0, ty = 0;
+  let dragging = false, startX = 0, startY = 0;
+  let moved = false;
+
+  function applyTransform() {
+    lightboxImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  }
+  function resetView() { scale = 1; tx = 0; ty = 0; applyTransform(); }
+
+  document.querySelectorAll(".gallery-grid img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      resetView();
+    });
+  });
+
+  closeBtn.addEventListener("click", () => lightbox.style.display = "none");
+  lightbox.addEventListener("click", e => { if (e.target === lightbox) lightbox.style.display = "none"; });
+  window.addEventListener("keydown", e => { if (e.key === "Escape") lightbox.style.display = "none"; });
+
+  lightboxImg.addEventListener("click", e => {
+    if (moved) { moved = false; return; }
+    e.stopPropagation();
+    if (scale === 1) { scale = 2; } else { scale = 1; tx = 0; ty = 0; }
+    applyTransform();
+  });
+
+  lightboxImg.addEventListener("mousedown", e => {
+    if (scale === 1) return;
+    dragging = true; moved = false;
+    startX = e.clientX - tx; startY = e.clientY - ty;
+    lightboxImg.style.cursor = "grabbing"; e.preventDefault();
+  });
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    moved = true; tx = e.clientX - startX; ty = e.clientY - startY; applyTransform();
+  });
+  window.addEventListener("mouseup", () => { dragging = false; lightboxImg.style.cursor = "grab"; });
+</script>
+
+</body>
+</html>
